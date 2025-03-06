@@ -1,31 +1,22 @@
 import React from 'react';
+import Layout from './components/layout';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import TicTacToeBoard from './tic-tac-toe/components/board';
 import BoardView from './game2048/components/board';
 
-// import { Telegraf, Markup } from 'telegraf';
-
-// Create a bot instance with your token
-// const bot = new Telegraf('8009373438:AAHlhO96EwCCBgCTjECtPeFL_Nj9qQzU7os');
-
-const App: React.FC = () => {
-  // bot.command('play', (ctx: any) => {
-  //   ctx.reply(
-  //     'Play 2048 in Telegram!',
-  //     Markup.inlineKeyboard([
-  //       Markup.button.webApp('▶️ Play 2048', 'https://fun-game-pool.vercel.app/')
-  //     ])
-  //   );
-  // });
-  
-  // // Start the bot
-  // bot.launch();
-
-  
+// App component that wraps around the routes
+const App = () => {
   return (
-    <div>
-      <h1>2048</h1>
-      <BoardView />
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/2048-game" element={<BoardView />} />
+          <Route path="/tic-tac-toe" element={<TicTacToeBoard />} />
+          <Route path="/" element={<BoardView />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
